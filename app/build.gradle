@@ -3,6 +3,15 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        release {
+            storeFile file("${project.rootDir}/keystore")
+            storePassword '123456'
+            keyAlias 'key0'
+            keyPassword '123456'
+        }
+    }
+
     namespace 'edu.northeastern.driversafebc'
     compileSdk 32
 
@@ -14,6 +23,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.release
     }
 
     buildTypes {
