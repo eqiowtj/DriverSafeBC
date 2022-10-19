@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DriverSafeBC</string>
+    <string name="team_name">Team Name: DriverSafeBC (DSBC)</string>
+    <string name="at_your_service">At Your Service</string>
+    <string name="firebase">Firebase</string>
+    <string name="driversafebc">DriverSafeBC</string>
+</resources>
