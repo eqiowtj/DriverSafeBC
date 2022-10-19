@@ -26,6 +26,10 @@ android {
         signingConfig signingConfigs.release
     }
 
+    buildFeatures {
+        viewBinding true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
