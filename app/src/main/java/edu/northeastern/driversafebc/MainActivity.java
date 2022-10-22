@@ -6,6 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import edu.northeastern.driversafebc.a7atyourservice.AtYourServiceActivity;
 import edu.northeastern.driversafebc.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
