@@ -1,7 +1,5 @@
 package edu.northeastern.driversafebc.a7atyourservice.pojo;
 
-import androidx.annotation.NonNull;
-
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -9,17 +7,16 @@ import java.util.List;
 public class TriviaResponse {
 
     @SerializedName("response_code")
-    public int responseCode;
+    private int responseCode;
 
     @SerializedName("results")
-    public List<Trivia> results;
+    private List<Trivia> results;
 
-    @NonNull
-    @Override
-    public String toString() {
-        return "TriviaResponse{" +
-                "responseCode=" + responseCode +
-                ", results=" + results +
-                '}';
+    public int getResponseCode() {
+        return responseCode;
+    }
+
+    public List<Trivia> getResults() {
+        return results;
     }
 }

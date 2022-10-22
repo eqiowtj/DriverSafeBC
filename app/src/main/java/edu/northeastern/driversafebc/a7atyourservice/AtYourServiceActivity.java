@@ -1,11 +1,13 @@
 package edu.northeastern.driversafebc.a7atyourservice;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.northeastern.driversafebc.a7atyourservice.pojo.Trivia;
@@ -16,7 +18,8 @@ public class AtYourServiceActivity extends AppCompatActivity {
 
     private ActivityAtYourServiceBinding binding;
     private OpenTriviaService openTriviaService;
-    Handler uiHandler;
+    private Handler uiHandler;
+    private TriviaItemAdapter triviaItemAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,16 +29,21 @@ public class AtYourServiceActivity extends AppCompatActivity {
 
         openTriviaService = new OpenTriviaService();
         uiHandler = new Handler();
+
+        binding.recyclerViewTriviaList.setLayoutManager(new LinearLayoutManager(this));
+        triviaItemAdapter = new TriviaItemAdapter(this);
+        binding.recyclerViewTriviaList.setAdapter(triviaItemAdapter);
     }
 
     public void getTriviaButtonClicked(View view) {
-
+        triviaItemAdapter.clearTriviaList();
         openTriviaService.getTrivia(10, "easy", "multiple", triviaResponse -> {
+            List<Trivia> triviaList = new ArrayList<>();
+            for (Trivia trivia : triviaResponse.getResults()) {
+                triviaList.add(trivia.initialize());
+            }
             uiHandler.post(() -> {
-                binding.textView.setText("");
-                for (Trivia t : triviaResponse.results) {
-                    binding.textView.append(t.question + "\n");
-                }
+                triviaItemAdapter.updateTriviaList(triviaList);
             });
         });
     }
