@@ -1,37 +1,62 @@
 package edu.northeastern.driversafebc.a7atyourservice.pojo;
 
-import androidx.annotation.NonNull;
-
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Trivia {
 
-    @SerializedName("type")
-    public String type;
-
     @SerializedName("difficulty")
-    public String difficulty;
+    private String difficulty;
 
     @SerializedName("question")
-    public String question;
+    private String question;
 
     @SerializedName("correct_answer")
-    public String correctAnswer;
+    private String correctAnswer;
 
     @SerializedName("incorrect_answers")
-    public List<String> incorrectAnswers;
+    private List<String> incorrectAnswers;
 
-    @NonNull
-    @Override
-    public String toString() {
-        return "Trivia{" +
-                "type='" + type + '\'' +
-                ", difficulty='" + difficulty + '\'' +
-                ", question='" + question + '\'' +
-                ", correctAnswer='" + correctAnswer + '\'' +
-                ", incorrectAnswers=" + incorrectAnswers +
-                '}';
+    private String selectedAnswer;
+
+    private List<String> allAnswers;
+
+    public Trivia initialize() {
+        allAnswers = new ArrayList<>(incorrectAnswers);
+        allAnswers.add(correctAnswer);
+        Collections.shuffle(allAnswers);
+        return this;
     }
+
+    public String getDifficulty() {
+        return difficulty;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public List<String> getAllAnswers() {
+        return allAnswers;
+    }
+
+    public void select(String answer) {
+        selectedAnswer = answer;
+    }
+
+    public boolean isSelected(String answer) {
+        return answer.equals(selectedAnswer);
+    }
+
+    public boolean isCorrect(String answer) {
+        return answer.equals(correctAnswer);
+    }
+
+    public boolean hasAnswered() {
+        return selectedAnswer != null;
+    }
+
 }
