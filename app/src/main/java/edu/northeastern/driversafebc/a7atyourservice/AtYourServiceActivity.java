@@ -9,6 +9,10 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.northeastern.driversafebc.a7atyourservice.pojo.Trivia;
@@ -27,6 +31,8 @@ public class AtYourServiceActivity extends AppCompatActivity {
     String type = "boolean";
     int number = 10;
 
+    private Handler uiHandler;
+    private TriviaItemAdapter triviaItemAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +46,10 @@ public class AtYourServiceActivity extends AppCompatActivity {
         radioGroup = binding.radioGroup;
         typeRadioGroup = binding.typeRadioGroup;
 
+
+        binding.recyclerViewTriviaList.setLayoutManager(new LinearLayoutManager(this));
+        triviaItemAdapter = new TriviaItemAdapter(this);
+        binding.recyclerViewTriviaList.setAdapter(triviaItemAdapter);
     }
 
     public void checkButton(View view){
@@ -82,12 +92,16 @@ public class AtYourServiceActivity extends AppCompatActivity {
 
 
         openTriviaService.getTrivia(number,  difficulty, type, triviaResponse -> {
+        triviaItemAdapter.clearTriviaList();
+        openTriviaService.getTrivia(10, "easy", "multiple", triviaResponse -> {
+            List<Trivia> triviaList = new ArrayList<>();
+            for (Trivia trivia : triviaResponse.getResults()) {
+                triviaList.add(trivia.initialize());
+            }
             uiHandler.post(() -> {
                 binding.textView.setText("");
                 for (Trivia t : triviaResponse.results) {
                     binding.textView.append(t.question + "\n");
-                    binding.textView.append(t.difficulty + "\n");
-                    binding.textView.append(t.type + "\n");
                 }
             });
         });
