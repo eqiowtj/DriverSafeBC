@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import edu.northeastern.driversafebc.R;
 import edu.northeastern.driversafebc.a7atyourservice.pojo.Trivia;
 import edu.northeastern.driversafebc.a7atyourservice.service.OpenTriviaService;
 import edu.northeastern.driversafebc.databinding.ActivityAtYourServiceBinding;
@@ -48,6 +50,8 @@ public class AtYourServiceActivity extends AppCompatActivity {
             type = "";
             difficulty = "";
             triviaList = new ArrayList<>();
+            binding.radioButtonDifficultyAny.setChecked(true);
+            binding.radioButtonTypeAny.setChecked(true);
         } else {
             amount = savedInstanceState.getInt("amount");
             type = savedInstanceState.getString("type");
@@ -119,6 +123,11 @@ public class AtYourServiceActivity extends AppCompatActivity {
                 setLoading(false);
                 triviaItemAdapter.updateTriviaList(triviaList);
                 uiHandler.post(() -> binding.nestedScrollView.smoothScrollTo(0, binding.recyclerViewTriviaList.getTop(), 500));
+            });
+        }, throwable -> {
+            uiHandler.post(() -> {
+                setLoading(false);
+                Toast.makeText(this, getString(R.string.get_trivia_failure_message_string), Toast.LENGTH_LONG).show();
             });
         });
     }
