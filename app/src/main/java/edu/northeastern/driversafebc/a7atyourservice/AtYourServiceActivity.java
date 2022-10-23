@@ -118,6 +118,7 @@ public class AtYourServiceActivity extends AppCompatActivity {
             uiHandler.post(() -> {
                 setLoading(false);
                 triviaItemAdapter.updateTriviaList(triviaList);
+                uiHandler.post(() -> binding.nestedScrollView.smoothScrollTo(0, binding.recyclerViewTriviaList.getTop(), 500));
             });
         });
     }
