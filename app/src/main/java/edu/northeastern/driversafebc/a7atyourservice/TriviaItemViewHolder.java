@@ -10,9 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import edu.northeastern.driversafebc.R;
 import edu.northeastern.driversafebc.a7atyourservice.pojo.Trivia;
 
@@ -24,7 +21,6 @@ public class TriviaItemViewHolder extends RecyclerView.ViewHolder {
     private final TextView question;
     private final TextView difficulty;
     private final Context context;
-    private List<RadioButton> answerButtons;
 
     public TriviaItemViewHolder(@NonNull View itemView, Context context) {
         super(itemView);
@@ -38,43 +34,41 @@ public class TriviaItemViewHolder extends RecyclerView.ViewHolder {
     public void bind(Trivia triviaItem) {
         question.setText(triviaItem.getQuestion());
         difficulty.setText(triviaItem.getDifficulty());
-        radioGroup.removeAllViews();
-        answerButtons = new ArrayList<>();
-
-        for (String answer : triviaItem.getAllAnswers()) {
-            RadioButton button = new RadioButton(context);
-            button.setText(answer);
-            button.setOnClickListener(view -> answerButtonClicked(triviaItem, answer));
-            answerButtons.add(button);
-            radioGroup.addView(button);
-        }
-        refreshButtonState(triviaItem);
+        refreshButtons(triviaItem, false);
     }
 
     private void answerButtonClicked(Trivia triviaItem, String answer) {
         triviaItem.select(answer);
-        refreshButtonState(triviaItem);
+        refreshButtons(triviaItem, true);
     }
 
-    private void refreshButtonState(Trivia triviaItem) {
-        if (triviaItem.hasAnswered()) {
-            for (RadioButton button : answerButtons) {
-                String buttonText = button.getText().toString();
-                boolean isSelected = triviaItem.isSelected(buttonText);
-                boolean isCorrect = triviaItem.isCorrect(buttonText);
-                if (isSelected) {
-                    button.setChecked(false);
-                    button.setChecked(true);
-                }
-                if (isSelected && !isCorrect) {
-                    button.setTextColor(context.getColorStateList(R.color.red_incorrect));
-                    uiHandler.post(() -> button.setButtonTintList(context.getColorStateList(R.color.red_incorrect)));
-                } else if (isCorrect) {
-                    button.setTextColor(context.getColorStateList(R.color.green_correct));
-                    uiHandler.post(() -> button.setButtonTintList(context.getColorStateList(R.color.green_correct)));
-                }
-                button.setEnabled(false);
+    private void refreshButtons(Trivia triviaItem, boolean clicked) {
+        radioGroup.removeAllViews();
+        for (String answer : triviaItem.getAllAnswers()) {
+            boolean isChecked = triviaItem.isSelected(answer);
+            boolean isCorrect = triviaItem.isCorrect(answer);
+            boolean useCorrectTheme = triviaItem.hasAnswered() && isCorrect;
+            boolean useIncorrectTheme = isChecked && !isCorrect;
+            RadioButton button = new RadioButton(context);
+
+            if (useCorrectTheme) {
+                button.setButtonTintList(context.getColorStateList(R.color.green_correct));
+                button.setTextColor(context.getColorStateList(R.color.green_correct));
+            } else if (useIncorrectTheme) {
+                button.setButtonTintList(context.getColorStateList(R.color.red_incorrect));
+                button.setTextColor(context.getColorStateList(R.color.red_incorrect));
             }
+
+            if (clicked) {
+                uiHandler.post(() -> button.setChecked(isChecked));
+            } else {
+                button.setChecked(isChecked);
+            }
+
+            button.setEnabled(!triviaItem.hasAnswered());
+            button.setText(answer);
+            button.setOnClickListener(view -> answerButtonClicked(triviaItem, answer));
+            radioGroup.addView(button);
         }
     }
 
