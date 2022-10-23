@@ -65,6 +65,9 @@ public class TriviaItemViewHolder extends RecyclerView.ViewHolder {
                 button.setChecked(isChecked);
             }
 
+            button.setLayoutParams(
+                    new RadioGroup.LayoutParams(RadioGroup.LayoutParams.WRAP_CONTENT, 150));
+            button.setTextSize(16);
             button.setEnabled(!triviaItem.hasAnswered());
             button.setText(answer);
             button.setOnClickListener(view -> answerButtonClicked(triviaItem, answer));

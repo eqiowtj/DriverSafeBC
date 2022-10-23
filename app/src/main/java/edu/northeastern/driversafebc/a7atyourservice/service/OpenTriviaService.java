@@ -17,9 +17,11 @@ public class OpenTriviaService {
         openTriviaApi = retrofit.create(OpenTriviaApi.class);
     }
 
-    public void getTrivia(int amount, String difficulty, String type, Consumer<TriviaResponse> onResponseHandler) {
+    public void getTrivia(int amount, String difficulty, String type,
+                          Consumer<TriviaResponse> onResponseHandler,
+                          Consumer<Throwable> onFailureHandler) {
         openTriviaApi.getTrivia(amount, difficulty, type)
-                .enqueue(new CallbackHandler<>(onResponseHandler));
+                .enqueue(new CallbackHandler<>(onResponseHandler, onFailureHandler));
     }
 
 }

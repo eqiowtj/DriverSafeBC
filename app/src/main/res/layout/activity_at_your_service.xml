@@ -158,14 +158,15 @@
                 android:layout_width="34dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="2dp"
                 android:layout_marginEnd="8dp"
                 android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="20sp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/buttonDecreaseNumber"
                 app:layout_constraintEnd_toStartOf="@+id/buttonIncreaseNumber"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/buttonDecreaseNumber"
+                app:layout_constraintTop_toTopOf="@+id/buttonDecreaseNumber"
                 tools:text="10" />
 
             <Button
@@ -214,5 +215,27 @@
             android:id="@+id/recyclerViewTriviaList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:id="@+id/backToTopButtonContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layoutDirection="rtl"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ImageButton
+                android:id="@+id/backToTopButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginBottom="28dp"
+                android:background="@null"
+                android:contentDescription="@string/back_to_top_button_description_string"
+                android:onClick="backToTopButtonClicked"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/back_to_top" />
+        </LinearLayout>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

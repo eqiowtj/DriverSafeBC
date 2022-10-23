@@ -17,4 +17,6 @@
     <string name="minus_sign_string">-</string>
     <string name="plus_sign_string">+</string>
     <string name="get_trivia_string">Get Trivia</string>
+    <string name="get_trivia_failure_message_string">Failed to get trivia. Please check your internet connection and try again later</string>
+    <string name="back_to_top_button_description_string">Back to Top</string>
 </resources>

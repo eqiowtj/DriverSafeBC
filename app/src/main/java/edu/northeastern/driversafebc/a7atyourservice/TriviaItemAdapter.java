@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import edu.northeastern.driversafebc.R;
@@ -21,9 +20,9 @@ public class TriviaItemAdapter extends RecyclerView.Adapter<TriviaItemViewHolder
     private final List<Trivia> triviaList;
     private final Context context;
 
-    public TriviaItemAdapter(Context context) {
+    public TriviaItemAdapter(Context context, List<Trivia> triviaList) {
         this.context = context;
-        this.triviaList = new ArrayList<>();
+        this.triviaList = triviaList;
     }
 
     @NonNull

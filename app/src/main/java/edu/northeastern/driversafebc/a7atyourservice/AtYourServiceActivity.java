@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import edu.northeastern.driversafebc.R;
 import edu.northeastern.driversafebc.a7atyourservice.pojo.Trivia;
 import edu.northeastern.driversafebc.a7atyourservice.service.OpenTriviaService;
 import edu.northeastern.driversafebc.databinding.ActivityAtYourServiceBinding;
@@ -31,6 +34,7 @@ public class AtYourServiceActivity extends AppCompatActivity {
     private int amount;
     private String type;
     private String difficulty;
+    private ArrayList<Trivia> triviaList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,50 +45,52 @@ public class AtYourServiceActivity extends AppCompatActivity {
         openTriviaService = new OpenTriviaService();
         uiHandler = new Handler();
 
+        if (savedInstanceState == null) {
+            amount = INITIAL_AMOUNT;
+            type = "";
+            difficulty = "";
+            triviaList = new ArrayList<>();
+            binding.radioButtonDifficultyAny.setChecked(true);
+            binding.radioButtonTypeAny.setChecked(true);
+        } else {
+            amount = savedInstanceState.getInt("amount");
+            type = savedInstanceState.getString("type");
+            difficulty = savedInstanceState.getString("difficulty");
+            triviaList = savedInstanceState.getParcelableArrayList("triviaList");
+        }
+
+        triviaItemAdapter = new TriviaItemAdapter(this, triviaList);
         binding.recyclerViewTriviaList.setLayoutManager(new LinearLayoutManager(this));
-        triviaItemAdapter = new TriviaItemAdapter(this);
         binding.recyclerViewTriviaList.setAdapter(triviaItemAdapter);
+        uiHandler.post(this::refreshBackToTopButton);
 
         binding.radioGroupTriviaType.setOnCheckedChangeListener((view, id) -> typeRadioGroupChecked(id));
         binding.radioGroupDifficulty.setOnCheckedChangeListener((view, id) -> difficultyRadioGroupChecked(id));
         binding.buttonIncreaseNumber.setOnClickListener(view -> changeNumberButtonClicked(1));
         binding.buttonDecreaseNumber.setOnClickListener(view -> changeNumberButtonClicked(-1));
 
-        amount = INITIAL_AMOUNT;
-        type = "";
-        difficulty = "";
-        refreshControls();
-
         allControls = Arrays.asList(
                 binding.radioButtonDifficultyAny, binding.radioButtonDifficultyEasy,
                 binding.radioButtonDifficultyMedium, binding.radioButtonDifficultyHard,
                 binding.radioButtonTypeAny, binding.radioButtonTypeBoolean, binding.radioButtonTypeMultiple,
                 binding.buttonDecreaseNumber, binding.buttonIncreaseNumber, binding.buttonGetTrivia);
+
+        refreshNumberOfTrivia();
     }
 
-    private void refreshControls() {
-        refreshNumberOfTrivia();
-        refreshTypeRadioGroup();
-        refreshDifficultyRadioGroup();
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("amount", amount);
+        outState.putString("type", type);
+        outState.putString("difficulty", difficulty);
+        outState.putParcelableArrayList("triviaList", triviaList);
     }
 
     private void refreshNumberOfTrivia() {
         binding.buttonIncreaseNumber.setEnabled(amount < MAX_AMOUNT);
         binding.buttonDecreaseNumber.setEnabled(amount > MIN_AMOUNT);
         binding.textViewNumberOfTrivia.setText(String.valueOf(amount));
-    }
-
-    private void refreshTypeRadioGroup() {
-        binding.radioButtonTypeAny.setChecked(binding.radioButtonTypeAny.getTag().equals(type));
-        binding.radioButtonTypeBoolean.setChecked(binding.radioButtonTypeBoolean.getTag().equals(type));
-        binding.radioButtonTypeMultiple.setChecked(binding.radioButtonTypeMultiple.getTag().equals(type));
-    }
-
-    private void refreshDifficultyRadioGroup() {
-        binding.radioButtonDifficultyAny.setChecked(binding.radioButtonDifficultyAny.getTag().equals(type));
-        binding.radioButtonDifficultyEasy.setChecked(binding.radioButtonDifficultyEasy.getTag().equals(type));
-        binding.radioButtonDifficultyMedium.setChecked(binding.radioButtonDifficultyMedium.getTag().equals(type));
-        binding.radioButtonDifficultyHard.setChecked(binding.radioButtonDifficultyHard.getTag().equals(type));
     }
 
     private void setLoading(boolean isLoading) {
@@ -108,6 +114,7 @@ public class AtYourServiceActivity extends AppCompatActivity {
 
     public void getTriviaButtonClicked(View view) {
         triviaItemAdapter.clearTriviaList();
+        refreshBackToTopButton();
         setLoading(true);
         openTriviaService.getTrivia(amount, difficulty, type, triviaResponse -> {
             List<Trivia> triviaList = new ArrayList<>();
@@ -117,8 +124,27 @@ public class AtYourServiceActivity extends AppCompatActivity {
             uiHandler.post(() -> {
                 setLoading(false);
                 triviaItemAdapter.updateTriviaList(triviaList);
+                uiHandler.post(() -> binding.nestedScrollView.smoothScrollTo(0, binding.recyclerViewTriviaList.getTop(), 500));
+                uiHandler.post(this::refreshBackToTopButton);
+            });
+        }, throwable -> {
+            uiHandler.post(() -> {
+                setLoading(false);
+                Toast.makeText(this, getString(R.string.get_trivia_failure_message_string), Toast.LENGTH_LONG).show();
             });
         });
+    }
+
+    public void backToTopButtonClicked(View view) {
+        binding.nestedScrollView.smoothScrollTo(0, 0, 500);
+    }
+
+    public void refreshBackToTopButton() {
+        if (!triviaList.isEmpty() && binding.recyclerViewTriviaList.getBottom() > binding.nestedScrollView.getBottom()) {
+            binding.backToTopButtonContainer.setVisibility(View.VISIBLE);
+        } else {
+            binding.backToTopButtonContainer.setVisibility(View.GONE);
+        }
     }
 
 }
