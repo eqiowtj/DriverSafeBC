@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -31,6 +32,7 @@ public class AtYourServiceActivity extends AppCompatActivity {
     private int amount;
     private String type;
     private String difficulty;
+    private ArrayList<Trivia> triviaList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +43,20 @@ public class AtYourServiceActivity extends AppCompatActivity {
         openTriviaService = new OpenTriviaService();
         uiHandler = new Handler();
 
+        if (savedInstanceState == null) {
+            amount = INITIAL_AMOUNT;
+            type = "";
+            difficulty = "";
+            triviaList = new ArrayList<>();
+        } else {
+            amount = savedInstanceState.getInt("amount");
+            type = savedInstanceState.getString("type");
+            difficulty = savedInstanceState.getString("difficulty");
+            triviaList = savedInstanceState.getParcelableArrayList("triviaList");
+        }
+
+        triviaItemAdapter = new TriviaItemAdapter(this, triviaList);
         binding.recyclerViewTriviaList.setLayoutManager(new LinearLayoutManager(this));
-        triviaItemAdapter = new TriviaItemAdapter(this);
         binding.recyclerViewTriviaList.setAdapter(triviaItemAdapter);
 
         binding.radioGroupTriviaType.setOnCheckedChangeListener((view, id) -> typeRadioGroupChecked(id));
@@ -50,41 +64,28 @@ public class AtYourServiceActivity extends AppCompatActivity {
         binding.buttonIncreaseNumber.setOnClickListener(view -> changeNumberButtonClicked(1));
         binding.buttonDecreaseNumber.setOnClickListener(view -> changeNumberButtonClicked(-1));
 
-        amount = INITIAL_AMOUNT;
-        type = "";
-        difficulty = "";
-        refreshControls();
-
         allControls = Arrays.asList(
                 binding.radioButtonDifficultyAny, binding.radioButtonDifficultyEasy,
                 binding.radioButtonDifficultyMedium, binding.radioButtonDifficultyHard,
                 binding.radioButtonTypeAny, binding.radioButtonTypeBoolean, binding.radioButtonTypeMultiple,
                 binding.buttonDecreaseNumber, binding.buttonIncreaseNumber, binding.buttonGetTrivia);
+
+        refreshNumberOfTrivia();
     }
 
-    private void refreshControls() {
-        refreshNumberOfTrivia();
-        refreshTypeRadioGroup();
-        refreshDifficultyRadioGroup();
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("amount", amount);
+        outState.putString("type", type);
+        outState.putString("difficulty", difficulty);
+        outState.putParcelableArrayList("triviaList", triviaList);
     }
 
     private void refreshNumberOfTrivia() {
         binding.buttonIncreaseNumber.setEnabled(amount < MAX_AMOUNT);
         binding.buttonDecreaseNumber.setEnabled(amount > MIN_AMOUNT);
         binding.textViewNumberOfTrivia.setText(String.valueOf(amount));
-    }
-
-    private void refreshTypeRadioGroup() {
-        binding.radioButtonTypeAny.setChecked(binding.radioButtonTypeAny.getTag().equals(type));
-        binding.radioButtonTypeBoolean.setChecked(binding.radioButtonTypeBoolean.getTag().equals(type));
-        binding.radioButtonTypeMultiple.setChecked(binding.radioButtonTypeMultiple.getTag().equals(type));
-    }
-
-    private void refreshDifficultyRadioGroup() {
-        binding.radioButtonDifficultyAny.setChecked(binding.radioButtonDifficultyAny.getTag().equals(type));
-        binding.radioButtonDifficultyEasy.setChecked(binding.radioButtonDifficultyEasy.getTag().equals(type));
-        binding.radioButtonDifficultyMedium.setChecked(binding.radioButtonDifficultyMedium.getTag().equals(type));
-        binding.radioButtonDifficultyHard.setChecked(binding.radioButtonDifficultyHard.getTag().equals(type));
     }
 
     private void setLoading(boolean isLoading) {

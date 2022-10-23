@@ -1,12 +1,15 @@
 package edu.northeastern.driversafebc.a7atyourservice.pojo;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Trivia {
+public class Trivia implements Parcelable {
 
     @SerializedName("difficulty")
     private String difficulty;
@@ -59,4 +62,39 @@ public class Trivia {
         return selectedAnswer != null;
     }
 
+    protected Trivia(Parcel in) {
+        difficulty = in.readString();
+        question = in.readString();
+        correctAnswer = in.readString();
+        incorrectAnswers = in.createStringArrayList();
+        selectedAnswer = in.readString();
+        allAnswers = in.createStringArrayList();
+    }
+
+    public static final Creator<Trivia> CREATOR = new Creator<Trivia>() {
+        @Override
+        public Trivia createFromParcel(Parcel in) {
+            return new Trivia(in);
+        }
+
+        @Override
+        public Trivia[] newArray(int size) {
+            return new Trivia[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(difficulty);
+        parcel.writeString(question);
+        parcel.writeString(correctAnswer);
+        parcel.writeStringList(incorrectAnswers);
+        parcel.writeString(selectedAnswer);
+        parcel.writeStringList(allAnswers);
+    }
 }
