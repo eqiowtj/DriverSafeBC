@@ -62,6 +62,7 @@ public class AtYourServiceActivity extends AppCompatActivity {
         triviaItemAdapter = new TriviaItemAdapter(this, triviaList);
         binding.recyclerViewTriviaList.setLayoutManager(new LinearLayoutManager(this));
         binding.recyclerViewTriviaList.setAdapter(triviaItemAdapter);
+        uiHandler.post(this::refreshBackToTopButton);
 
         binding.radioGroupTriviaType.setOnCheckedChangeListener((view, id) -> typeRadioGroupChecked(id));
         binding.radioGroupDifficulty.setOnCheckedChangeListener((view, id) -> difficultyRadioGroupChecked(id));
@@ -113,6 +114,7 @@ public class AtYourServiceActivity extends AppCompatActivity {
 
     public void getTriviaButtonClicked(View view) {
         triviaItemAdapter.clearTriviaList();
+        refreshBackToTopButton();
         setLoading(true);
         openTriviaService.getTrivia(amount, difficulty, type, triviaResponse -> {
             List<Trivia> triviaList = new ArrayList<>();
@@ -123,6 +125,7 @@ public class AtYourServiceActivity extends AppCompatActivity {
                 setLoading(false);
                 triviaItemAdapter.updateTriviaList(triviaList);
                 uiHandler.post(() -> binding.nestedScrollView.smoothScrollTo(0, binding.recyclerViewTriviaList.getTop(), 500));
+                uiHandler.post(this::refreshBackToTopButton);
             });
         }, throwable -> {
             uiHandler.post(() -> {
@@ -130,6 +133,18 @@ public class AtYourServiceActivity extends AppCompatActivity {
                 Toast.makeText(this, getString(R.string.get_trivia_failure_message_string), Toast.LENGTH_LONG).show();
             });
         });
+    }
+
+    public void backToTopButtonClicked(View view) {
+        binding.nestedScrollView.smoothScrollTo(0, 0, 500);
+    }
+
+    public void refreshBackToTopButton() {
+        if (!triviaList.isEmpty() && binding.recyclerViewTriviaList.getBottom() > binding.nestedScrollView.getBottom()) {
+            binding.backToTopButtonContainer.setVisibility(View.VISIBLE);
+        } else {
+            binding.backToTopButtonContainer.setVisibility(View.GONE);
+        }
     }
 
 }
