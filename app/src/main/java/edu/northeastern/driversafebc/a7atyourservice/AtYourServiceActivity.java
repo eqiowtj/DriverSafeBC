@@ -36,15 +36,17 @@ public class AtYourServiceActivity extends AppCompatActivity {
     }
 
     public void getTriviaButtonClicked(View view) {
+        int amount = Integer.parseInt(binding.editTextNumberOfTrivia.getText().toString());
+        String type = findViewById(binding.radioGroupTriviaType.getCheckedRadioButtonId()).getTag().toString();
+        String difficulty = findViewById(binding.radioGroupDifficulty.getCheckedRadioButtonId()).getTag().toString();
+
         triviaItemAdapter.clearTriviaList();
-        openTriviaService.getTrivia(10, "easy", "multiple", triviaResponse -> {
+        openTriviaService.getTrivia(amount, difficulty, type, triviaResponse -> {
             List<Trivia> triviaList = new ArrayList<>();
             for (Trivia trivia : triviaResponse.getResults()) {
                 triviaList.add(trivia.initialize());
             }
-            uiHandler.post(() -> {
-                triviaItemAdapter.updateTriviaList(triviaList);
-            });
+            uiHandler.post(() -> triviaItemAdapter.updateTriviaList(triviaList));
         });
     }
 
