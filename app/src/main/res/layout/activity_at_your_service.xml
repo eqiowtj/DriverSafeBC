@@ -13,6 +13,7 @@
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/controlsContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -210,6 +211,21 @@
                 app:layout_constraintTop_toBottomOf="@+id/buttonGetTrivia" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/loadingIconContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:id="@+id/loadingIcon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewTriviaList"
