@@ -1,0 +1,13 @@
+real name: Jianhao Zhou
+GitHub name: eqiowtj
+
+real name: Shang Xiao
+GitHub name: ShangXiaoNEUCS
+
+real name: Yuzhe Shen
+GitHub name: bearalice
+
+real name: Mingfu Huang
+GitHub name: huangm9777
+
+GitHub repository: https://github.com/eqiowtj/DriverSafeBC
