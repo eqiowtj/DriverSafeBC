@@ -17,108 +17,123 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/textViewDifficultyLabel"
+
+            <LinearLayout
+                android:id="@+id/difficultyControlContainer"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewDifficultyLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/difficulty_label_string"
+                    android:textSize="16sp" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroupDifficulty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:flow_horizontalAlign="center">
+
+                    <RadioButton
+                        android:id="@+id/radioButtonDifficultyAny"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:tag=""
+                        android:text="@string/any_difficulty_string"
+                        tools:ignore="DuplicateSpeakableTextCheck" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonDifficultyEasy"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:tag="easy"
+                        android:text="@string/easy_difficulty_string" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonDifficultyMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:tag="medium"
+                        android:text="@string/medium_difficulty_string" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonDifficultyHard"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:tag="hard"
+                        android:text="@string/hard_difficulty_string" />
+
+
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/typeControlContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewTypeOfTriviaLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/type_label_string"
+                    android:textSize="16sp" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroupTriviaType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:flow_horizontalAlign="center">
+
+                    <RadioButton
+                        android:id="@+id/radioButtonTypeAny"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:tag=""
+                        android:text="@string/any_type_string" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonTypeBoolean"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:tag="boolean"
+                        android:text="@string/true_false_type_string" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonTypeMultiple"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:tag="multiple"
+                        android:text="@string/multiple_choice_type_string" />
+
+                </RadioGroup>
+            </LinearLayout>
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/controlsFlow"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
-                android:text="@string/difficulty_label_string"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/radioGroupDifficulty"
+                android:layout_marginEnd="24dp"
+                app:constraint_referenced_ids="difficultyControlContainer,typeControlContainer"
+                app:flow_horizontalBias="0"
+                app:flow_horizontalGap="36dp"
+                app:flow_horizontalStyle="packed"
+                app:flow_wrapMode="chain"
+                app:layout_constraintBottom_toTopOf="@+id/textViewNumberOfTriviaLabel"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
                 app:layout_constraintVertical_chainStyle="packed" />
 
-            <RadioGroup
-                android:id="@+id/radioGroupDifficulty"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:orientation="horizontal"
-                app:flow_horizontalAlign="center"
-                app:layout_constraintBottom_toTopOf="@+id/textViewTypeOfTriviaLabel"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewDifficultyLabel">
-
-                <RadioButton
-                    android:id="@+id/radioButtonDifficultyAny"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:tag=""
-                    android:text="@string/any_difficulty_string"
-                    tools:ignore="DuplicateSpeakableTextCheck" />
-
-                <RadioButton
-                    android:id="@+id/radioButtonDifficultyEasy"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:tag="easy"
-                    android:text="@string/easy_difficulty_string" />
-
-                <RadioButton
-                    android:id="@+id/radioButtonDifficultyMedium"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:tag="medium"
-                    android:text="@string/medium_difficulty_string" />
-
-                <RadioButton
-                    android:id="@+id/radioButtonDifficultyHard"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:tag="hard"
-                    android:text="@string/hard_difficulty_string" />
-
-
-            </RadioGroup>
-
-            <TextView
-                android:id="@+id/textViewTypeOfTriviaLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/type_label_string"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/radioGroupTriviaType"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroupDifficulty" />
-
-            <RadioGroup
-                android:id="@+id/radioGroupTriviaType"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:orientation="horizontal"
-                app:flow_horizontalAlign="center"
-                app:layout_constraintBottom_toTopOf="@+id/textViewNumberOfTriviaLabel"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewTypeOfTriviaLabel">
-
-                <RadioButton
-                    android:id="@+id/radioButtonTypeAny"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:tag=""
-                    android:text="@string/any_type_string" />
-
-                <RadioButton
-                    android:id="@+id/radioButtonTypeBoolean"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:tag="boolean"
-                    android:text="@string/true_false_type_string" />
-
-                <RadioButton
-                    android:id="@+id/radioButtonTypeMultiple"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:tag="multiple"
-                    android:text="@string/multiple_choice_type_string" />
-
-            </RadioGroup>
 
             <TextView
                 android:id="@+id/textViewNumberOfTriviaLabel"
@@ -129,9 +144,9 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/number_of_trivia_type_string"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/buttonDecreaseNumber"
+                app:layout_constraintBottom_toTopOf="@id/buttonDecreaseNumber"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroupTriviaType" />
+                app:layout_constraintTop_toBottomOf="@id/controlsFlow" />
 
             <Button
                 android:id="@+id/buttonDecreaseNumber"
@@ -144,19 +159,21 @@
                 android:paddingLeft="0dp"
                 android:paddingRight="0dp"
                 android:text="@string/minus_sign_string"
+
                 android:textStyle="bold"
                 app:iconPadding="0dp"
-                app:layout_constraintBottom_toTopOf="@+id/buttonGetTrivia"
+                app:layout_constraintBottom_toTopOf="@id/buttonGetTrivia"
+
                 app:layout_constraintEnd_toStartOf="@+id/textViewNumberOfTrivia"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewNumberOfTriviaLabel"
+                app:layout_constraintTop_toBottomOf="@id/textViewNumberOfTriviaLabel"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <TextView
                 android:id="@+id/textViewNumberOfTrivia"
-                android:layout_width="34dp"
+                android:layout_width="38dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="2dp"
@@ -165,7 +182,6 @@
                 android:textColor="#000000"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toStartOf="@+id/buttonIncreaseNumber"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/buttonDecreaseNumber"
                 app:layout_constraintTop_toTopOf="@+id/buttonDecreaseNumber"
                 tools:text="10" />
@@ -182,7 +198,6 @@
                 android:textStyle="bold"
                 app:iconPadding="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/textViewNumberOfTrivia"
                 app:layout_constraintTop_toTopOf="@+id/buttonDecreaseNumber"
                 tools:ignore="TouchTargetSizeCheck" />
@@ -192,23 +207,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="18dp"
+
                 android:onClick="getTriviaButtonClicked"
                 android:text="@string/get_trivia_string"
-                app:layout_constraintBottom_toTopOf="@+id/dividerControls"
+                app:layout_constraintBottom_toTopOf="@id/controlsDivider"
+
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/buttonDecreaseNumber" />
+                app:layout_constraintTop_toBottomOf="@id/buttonDecreaseNumber" />
 
             <View
-                android:id="@+id/dividerControls"
+                android:id="@+id/controlsDivider"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
+
                 android:layout_marginTop="16dp"
                 android:background="?android:attr/listDivider"
                 app:layout_constraintBottom_toBottomOf="parent"
+
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/buttonGetTrivia" />
+                app:layout_constraintTop_toBottomOf="@id/buttonGetTrivia" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

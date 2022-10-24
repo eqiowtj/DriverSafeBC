@@ -19,6 +19,7 @@ public class TriviaItemViewHolder extends RecyclerView.ViewHolder {
     private final Handler uiHandler;
     private final RadioGroup radioGroup;
     private final TextView question;
+    private final TextView category;
     private final TextView difficulty;
     private final Context context;
 
@@ -26,14 +27,17 @@ public class TriviaItemViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         this.context = context;
         uiHandler = new Handler();
-        radioGroup = itemView.findViewById(R.id.radioGroup);
+        radioGroup = itemView.findViewById(R.id.triviaRadioGroup);
         question = itemView.findViewById(R.id.textViewQuestion);
+        category = itemView.findViewById(R.id.textViewCategory);
         difficulty = itemView.findViewById(R.id.textViewDifficulty);
     }
 
     public void bind(Trivia triviaItem) {
+        category.setText(triviaItem.getCategory());
+        String difficultyText = triviaItem.getDifficulty().substring(0, 1).toUpperCase() + triviaItem.getDifficulty().substring(1);
+        difficulty.setText(difficultyText);
         question.setText(triviaItem.getQuestion());
-        difficulty.setText(triviaItem.getDifficulty());
         refreshButtons(triviaItem, false);
     }
 

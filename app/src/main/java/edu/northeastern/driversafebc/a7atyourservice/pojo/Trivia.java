@@ -23,6 +23,9 @@ public class Trivia implements Parcelable {
     @SerializedName("incorrect_answers")
     private List<String> incorrectAnswers;
 
+    @SerializedName("category")
+    private String category;
+
     private String selectedAnswer;
 
     private List<String> allAnswers;
@@ -36,6 +39,10 @@ public class Trivia implements Parcelable {
 
     public String getDifficulty() {
         return difficulty;
+    }
+
+    public String getCategory() {
+        return category;
     }
 
     public String getQuestion() {
@@ -64,6 +71,7 @@ public class Trivia implements Parcelable {
 
     protected Trivia(Parcel in) {
         difficulty = in.readString();
+        category = in.readString();
         question = in.readString();
         correctAnswer = in.readString();
         incorrectAnswers = in.createStringArrayList();
@@ -91,6 +99,7 @@ public class Trivia implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(difficulty);
+        parcel.writeString(category);
         parcel.writeString(question);
         parcel.writeString(correctAnswer);
         parcel.writeStringList(incorrectAnswers);
