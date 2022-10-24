@@ -97,6 +97,17 @@ public class AtYourServiceActivity extends AppCompatActivity {
         for (Button button : allControls) {
             button.setClickable(!isLoading);
         }
+        if (isLoading) {
+            binding.loadingIconContainer.setVisibility(View.VISIBLE);
+            uiHandler.post(() -> {
+                if (binding.loadingIconContainer.getBottom() > binding.nestedScrollView.getBottom()) {
+                    binding.nestedScrollView.smoothScrollTo(0,
+                            binding.loadingIconContainer.getBottom() - binding.nestedScrollView.getBottom());
+                }
+            });
+        } else {
+            binding.loadingIconContainer.setVisibility(View.GONE);
+        }
     }
 
     public void changeNumberButtonClicked(int delta) {
