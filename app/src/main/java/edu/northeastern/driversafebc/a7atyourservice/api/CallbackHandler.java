@@ -1,5 +1,7 @@
 package edu.northeastern.driversafebc.a7atyourservice.api;
 
+import androidx.annotation.NonNull;
+
 import java.util.function.Consumer;
 
 import retrofit2.Call;
@@ -16,17 +18,18 @@ public class CallbackHandler<T> implements Callback<T> {
         this.onFailureHandler = onFailureHandler;
     }
 
-    public CallbackHandler(Consumer<T> onResponseHandler) {
-        this(onResponseHandler, (System.err::println));
+    @Override
+    public void onResponse(@NonNull Call<T> call, Response<T> response) {
+        if (response.isSuccessful()) {
+            onResponseHandler.accept(response.body());
+        } else {
+            onFailureHandler.accept(new RuntimeException("Request failed."));
+        }
     }
 
     @Override
-    public void onResponse(Call<T> call, Response<T> response) {
-        onResponseHandler.accept(response.body());
-    }
-
-    @Override
-    public void onFailure(Call<T> call, Throwable t) {
+    public void onFailure(@NonNull Call<T> call, Throwable t) {
+        t.printStackTrace();
         onFailureHandler.accept(t);
     }
 
