@@ -6,6 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import edu.northeastern.driversafebc.a7atyourservice.AboutActivity;
 import edu.northeastern.driversafebc.a7atyourservice.AtYourServiceActivity;
 import edu.northeastern.driversafebc.databinding.ActivityMainBinding;
 
@@ -25,4 +26,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void aboutClicked(View view) {
+        Intent intent = new Intent(this, AboutActivity.class);
+        startActivity(intent);
+    }
+
+    public void firebaseButtonClicked(View view){
+
+        Intent intent = new Intent(this, LoginUserName.class);
+        startActivity(intent);
+    }
 }
