@@ -88,6 +88,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <Button
+        android:id="@+id/sendButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send Now"
+        android:onClick="sendButtonOnClick"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/stickerTextView" />
+
 <!--    <ImageButton-->
 <!--        android:id="@+id/test"-->
 <!--        android:layout_width="50dp"-->
@@ -110,13 +119,6 @@
 <!--        app:layout_constraintTop_toBottomOf="@id/test"-->
 <!--        />-->
 
-<!--    <Button-->
-<!--        android:id="@+id/sendButton"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Send Now"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/test" />-->
 
 <!--    <Spinner-->
 <!--        android:id="@+id/spinner1"-->
