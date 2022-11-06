@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import edu.northeastern.driversafebc.a7atyourservice.AtYourServiceActivity;
+import edu.northeastern.driversafebc.a7atyourservice.SendStickerActivity;
 import edu.northeastern.driversafebc.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,6 +23,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void atYourServiceButtonClicked(View view) {
         Intent intent = new Intent(this, AtYourServiceActivity.class);
+        startActivity(intent);
+    }
+
+    //"Firebase button clicked"
+    public void sendStickerButtonClicked(View view) {
+        Intent intent = new Intent(this, SendStickerActivity.class);
         startActivity(intent);
     }
 
