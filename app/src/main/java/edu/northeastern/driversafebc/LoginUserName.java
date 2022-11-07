@@ -5,22 +5,29 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.checkerframework.checker.units.qual.A;
 
+import java.lang.annotation.Documented;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 
 import edu.northeastern.driversafebc.a7atyourservice.AboutActivity;
@@ -28,6 +35,8 @@ import edu.northeastern.driversafebc.a7atyourservice.AboutActivity;
 public class LoginUserName extends AppCompatActivity {
     public static final String EXTRA_USERNAME = "com.example.application.example.EXTRA_USERNAME";
 
+    ArrayList<String> nameArraylist = new ArrayList<>();
+    boolean exist = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +47,21 @@ public class LoginUserName extends AppCompatActivity {
         Button createUserButton = findViewById(R.id.create_button);
         boolean isLogin = false;
 
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("UserNames");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                nameArraylist.clear();
+                for (DataSnapshot snapshot1 : dataSnapshot.getChildren()){
+                    nameArraylist.add(snapshot1.getValue().toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
         createUserButton.setOnClickListener(new View.OnClickListener() {
@@ -48,11 +72,19 @@ public class LoginUserName extends AppCompatActivity {
                     Toast.makeText(LoginUserName.this, "Enter your username", Toast.LENGTH_SHORT).show();
                 }else {
 
-                    ArrayList<String> nameArraylist = new ArrayList<>();
-                    FirebaseDatabase.getInstance().getReference().child("UserNames").child(txt_userName).setValue(true);
+                    if (nameArraylist.contains(txt_userName)){
 
-                    Toast.makeText(LoginUserName.this, "Sent", Toast.LENGTH_SHORT).show();
-                    openAfterLogin();
+                        Toast.makeText(LoginUserName.this, "Username exists, enter another one", Toast.LENGTH_SHORT).show();
+
+                    }else {
+
+                        FirebaseDatabase.getInstance().getReference().child("UserNames").child(txt_userName).setValue(txt_userName);
+                        Toast.makeText(LoginUserName.this, "Welcome "  + txt_userName, Toast.LENGTH_SHORT).show();
+
+                        openAfterLogin();
+                    }
+
+
 
 
                 }
