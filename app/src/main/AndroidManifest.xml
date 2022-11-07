@@ -16,6 +16,13 @@
         android:theme="@style/Theme.DriverSafeBC"
         tools:targetApi="31">
         <activity
+            android:name=".AfterLogin"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".LoginUserName"
             android:exported="false"
             android:parentActivityName=".MainActivity">
