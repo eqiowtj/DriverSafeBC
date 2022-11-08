@@ -6,9 +6,9 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import edu.northeastern.driversafebc.a7atyourservice.AboutActivity;
 import edu.northeastern.driversafebc.a7atyourservice.AtYourServiceActivity;
-import edu.northeastern.driversafebc.a7atyourservice.SendStickerActivity;
+import edu.northeastern.driversafebc.a8stickit.LoginUserName;
+import edu.northeastern.driversafebc.a8stickit.SendStickerActivity;
 import edu.northeastern.driversafebc.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {

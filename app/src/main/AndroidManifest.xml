@@ -17,7 +17,7 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".a7atyourservice.SendStickerActivity"
+            android:name=".a8stickit.SendStickerActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -33,7 +33,7 @@
         </activity>
 
         <activity
-            android:name=".AfterLogin"
+            android:name=".a8stickit.AfterLogin"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -41,7 +41,7 @@
         </activity>
 
         <activity
-            android:name=".LoginUserName"
+            android:name=".a8stickit.LoginUserName"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -49,7 +49,7 @@
         </activity>
 
         <activity
-            android:name=".a7atyourservice.AboutActivity"
+            android:name=".AboutActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

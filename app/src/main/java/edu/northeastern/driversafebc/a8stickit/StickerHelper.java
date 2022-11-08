@@ -1,4 +1,4 @@
-package edu.northeastern.driversafebc.a7atyourservice;
+package edu.northeastern.driversafebc.a8stickit;
 
 public class StickerHelper {
     String sender, receiver, id;

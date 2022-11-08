@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".a7atyourservice.SendStickerActivity">
+    tools:context=".a8stickit.SendStickerActivity">
 
     <Button
         android:id="@+id/A"

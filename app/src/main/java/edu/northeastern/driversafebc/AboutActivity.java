@@ -1,4 +1,4 @@
-package edu.northeastern.driversafebc.a7atyourservice;
+package edu.northeastern.driversafebc;
 
 import android.os.Bundle;
 
