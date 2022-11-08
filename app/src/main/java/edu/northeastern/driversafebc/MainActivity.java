@@ -6,6 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import edu.northeastern.driversafebc.a7atyourservice.AboutActivity;
 import edu.northeastern.driversafebc.a7atyourservice.AtYourServiceActivity;
 import edu.northeastern.driversafebc.a7atyourservice.SendStickerActivity;
 import edu.northeastern.driversafebc.databinding.ActivityMainBinding;
@@ -26,10 +27,18 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //"Firebase button clicked"
-    public void sendStickerButtonClicked(View view) {
+    public void firebaseButtonClicked1(View view) {
         Intent intent = new Intent(this, SendStickerActivity.class);
         startActivity(intent);
     }
 
+    public void aboutClicked(View view) {
+        Intent intent = new Intent(this, AboutActivity.class);
+        startActivity(intent);
+    }
+
+    public void firebaseButtonClicked2(View view){
+        Intent intent = new Intent(this, LoginUserName.class);
+        startActivity(intent);
+    }
 }
