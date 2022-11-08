@@ -30,10 +30,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AboutActivity.class);
         startActivity(intent);
     }
-
-    public void firebaseButtonClicked(View view){
-
-        Intent intent = new Intent(this, LoginUserName.class);
-        startActivity(intent);
-    }
 }
