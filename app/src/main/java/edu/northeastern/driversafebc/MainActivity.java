@@ -7,8 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import edu.northeastern.driversafebc.a7atyourservice.AtYourServiceActivity;
-import edu.northeastern.driversafebc.a8stickit.LoginUserName;
-import edu.northeastern.driversafebc.a8stickit.SendStickerActivity;
+import edu.northeastern.driversafebc.a8stickit.StickitActivity;
 import edu.northeastern.driversafebc.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void firebaseButtonClicked1(View view) {
-        Intent intent = new Intent(this, SendStickerActivity.class);
+    public void firebaseButtonClicked(View view) {
+        Intent intent = new Intent(this, StickitActivity.class);
         startActivity(intent);
     }
 
@@ -37,8 +36,4 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void firebaseButtonClicked2(View view){
-        Intent intent = new Intent(this, LoginUserName.class);
-        startActivity(intent);
-    }
 }
