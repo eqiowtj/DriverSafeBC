@@ -20,29 +20,82 @@
         android:id="@+id/username_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome"
         android:layout_margin="15dp"
+        android:text="Welcome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/sender_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:textSize="20dp"
         android:text="Send to: "
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/username_textview"
-        />
+        app:layout_constraintTop_toBottomOf="@id/username_textview" />
 
     <Spinner
         android:id="@+id/receiver_spinner"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
+
         app:layout_constraintStart_toEndOf="@+id/sender_textview"
         app:layout_constraintTop_toBottomOf="@id/username_textview"
+
         />
+
+    <TextView
+        android:id="@+id/textView_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="Message: "
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sender_textview" />
+
+    <EditText
+        android:id="@+id/message_to_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="15dp"
+        android:ems="6"
+        android:inputType="textPersonName"
+
+        app:layout_constraintStart_toEndOf="@+id/textView_message"
+        app:layout_constraintTop_toBottomOf="@+id/receiver_spinner" />
+
+    <Button
+        android:id="@+id/send_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="39dp"
+        android:text="send"
+        app:layout_constraintBottom_toTopOf="@+id/logout_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/message_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Message"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logout_button" />
+
+    <EditText
+        android:id="@+id/addressee_editText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/receiver_spinner"
+        app:layout_constraintTop_toBottomOf="@+id/username_textview" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

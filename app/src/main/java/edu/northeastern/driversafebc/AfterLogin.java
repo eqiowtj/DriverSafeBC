@@ -21,8 +21,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.checkerframework.checker.units.qual.A;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -36,6 +39,12 @@ public class AfterLogin extends AppCompatActivity {
         Button logoutButton = findViewById(R.id.logout_button);
         TextView userNameTextView = findViewById(R.id.username_textview);
         Spinner spinner = findViewById(R.id.receiver_spinner);
+        EditText addresseeInput = findViewById(R.id.addressee_editText2);
+        Button send_button = findViewById(R.id.send_button);
+        EditText messsageToSendEdit = findViewById(R.id.message_to_send);
+        TextView messageTextView = findViewById(R.id.message_textView);
+
+
 
 
         Intent intent = getIntent();
@@ -48,6 +57,7 @@ public class AfterLogin extends AppCompatActivity {
         ArrayList<String> nameArraylist = new ArrayList<>();
 
 
+        //reading the loged in userName
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("UserNames");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -68,34 +78,67 @@ public class AfterLogin extends AppCompatActivity {
 
             }
         });
+
+        //receiving message
+        String senderName = "";
+        String message = "";
+//        DatabaseReference myRefReceive = FirebaseDatabase.getInstance().getReference().child("Message");
+
+
         ArrayAdapter<String> myAdapter = new ArrayAdapter<>(AfterLogin.this, android.R.layout.simple_spinner_dropdown_item,  nameArraylist);
         spinner.setAdapter(myAdapter);
 
-        spinner.setOnItemSelectedListener(
-                new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        //send a message
+        send_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String addressee_string = addresseeInput.getText().toString();
+                String messageToSendString = messsageToSendEdit.getText().toString();
 
-                        Toast.makeText(AfterLogin.this, "spinner chose", Toast.LENGTH_SHORT).show();
-                    }
+                if (addressee_string.isEmpty()){
+                    Toast.makeText(AfterLogin.this, "Please enter your addressee", Toast.LENGTH_SHORT).show();
+                }else {
 
-                    @Override
-                    public void onNothingSelected(AdapterView<?> adapterView) {}
-                });
-
-//
+                    Toast.makeText(AfterLogin.this, "sending", Toast.LENGTH_SHORT).show();
+                    FirebaseDatabase.getInstance().getReference().child("Message").child("Sender").setValue(txt_UserName);
+                    FirebaseDatabase.getInstance().getReference().child("Message").child("receiver").setValue(addressee_string);
+                    FirebaseDatabase.getInstance().getReference().child("Message").child("Message:").setValue(messageToSendString);
+                }
+            }
+        });
 //        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-//                String item = adapterView.getItemAtPosition(i).toString();
-//                Toast.makeText(adapterView.getContext(), "Sending sticker to " + item , Toast.LENGTH_SHORT).show();
+//            /**
+//             * Called when a new item is selected (in the Spinner)
+//             */
+//            public void onItemSelected(AdapterView<?> parent, View view,
+//                                       int pos, long id) {
+//
+//                Toast.makeText(AfterLogin.this, "Hello Toast",Toast.LENGTH_SHORT).show();
+//
 //            }
 //
-//            @Override
-//            public void onNothingSelected(AdapterView<?> adapterView) {
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
 //
 //            }
+//
 //        });
+
+
+
+//        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//                    @Override
+//                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+//                        String addressee = spinner.getSelectedItem().toString();
+//                        Toast.makeText(AfterLogin.this, "sending to " + addressee, Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                    @Override
+//                    public void onNothingSelected(AdapterView<?> adapterView) {
+//                        Toast.makeText(AfterLogin.this, "sending to no one", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//
 
             logoutButton.setOnClickListener(new View.OnClickListener() {
                 @Override

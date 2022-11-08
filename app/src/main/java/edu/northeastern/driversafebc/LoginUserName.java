@@ -71,7 +71,6 @@ public class LoginUserName extends AppCompatActivity {
                 if (txt_userName.isEmpty()){
                     Toast.makeText(LoginUserName.this, "Enter your username", Toast.LENGTH_SHORT).show();
                 }else {
-
                     if (nameArraylist.contains(txt_userName)){
 
                         Toast.makeText(LoginUserName.this, "Username exists, enter another one", Toast.LENGTH_SHORT).show();
