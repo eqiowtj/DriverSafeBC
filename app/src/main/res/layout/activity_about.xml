@@ -7,7 +7,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         android:orientation="vertical"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -16,47 +16,47 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Group Name: DriverSafeBC"
+            android:text="@string/group_name_driversafebc"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Group Members:"
+            android:layout_marginTop="16dp"
+            android:text="@string/group_members"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Yuzhe Shen"
+            android:layout_marginTop="8dp"
+            android:text="@string/yuzhe_shen"
             android:textColor="#666666"
             android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Jianhao Zhou"
+            android:layout_marginTop="8dp"
+            android:text="@string/jianhao_zhou"
             android:textColor="#666666"
             android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Mingfu Huang"
+            android:layout_marginTop="8dp"
+            android:text="@string/mingfu_huang"
             android:textColor="#666666"
             android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Shang Xiao"
+            android:layout_marginTop="8dp"
+            android:text="@string/shang_xiao"
             android:textColor="#666666"
             android:textSize="20sp" />
     </LinearLayout>

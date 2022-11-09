@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "382749054724",
+    "firebase_url": "https://stickit-5e683-default-rtdb.firebaseio.com",
+    "project_id": "stickit-5e683",
+    "storage_bucket": "stickit-5e683.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:382749054724:android:6817a207c71f5ff15e6251",
+        "android_client_info": {
+          "package_name": "edu.northeastern.driversafebc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "382749054724-3tf419trlrpnvfng3vhdfcvp4140pssf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsxFQuPOAwqTragdd0NuyGQ2WRNJa62ZQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "382749054724-3tf419trlrpnvfng3vhdfcvp4140pssf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
