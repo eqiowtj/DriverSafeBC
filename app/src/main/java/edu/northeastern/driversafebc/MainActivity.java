@@ -3,6 +3,7 @@ package edu.northeastern.driversafebc;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -35,5 +36,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AboutActivity.class);
         startActivity(intent);
     }
+
+    public void rankClicked(View view) {
+        Intent intent = new Intent(this, RankListActivity.class);
+        startActivity(intent);
+    }
+
 
 }
