@@ -1,0 +1,115 @@
+{
+  "quizSets": [
+    {
+      "id": 1,
+      "name": "Set 1",
+      "errorsAllowed": 2,
+      "questions": [
+        {
+          "question": "Drivers must share the road with others, including passenger vehicles, commercial vehicles, pedestrians, motorcycles, farm machinery, cyclists and buses.",
+          "correctAnswerIndex": 0,
+          "answers": [
+            "The above statement is true.",
+            "The above statement is true except for pedestrians because they are not in a vehicle.",
+            "The statement is false.",
+            "The above statement is true except for farm machinery."
+          ]
+        },
+        {
+          "question": "Drivers must share the road with others, including passenger vehicles, commercial vehicles, pedestrians, motorcycles, farm machinery, cyclists and buses.",
+          "correctAnswerIndex": 0,
+          "answers": [
+            "The above statement is true.",
+            "The above statement is true except for pedestrians because they are not in a vehicle.",
+            "The statement is false.",
+            "The above statement is true except for farm machinery."
+          ]
+        },
+        {
+          "question": "Drivers must share the road with others, including passenger vehicles, commercial vehicles, pedestrians, motorcycles, farm machinery, cyclists and buses.",
+          "correctAnswerIndex": 0,
+          "answers": [
+            "The above statement is true.",
+            "The above statement is true except for pedestrians because they are not in a vehicle.",
+            "The statement is false.",
+            "The above statement is true except for farm machinery."
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Set 2",
+      "errorsAllowed": 2,
+      "questions": [
+        {
+          "question": "Drivers must share the road with others, including passenger vehicles, commercial vehicles, pedestrians, motorcycles, farm machinery, cyclists and buses.",
+          "correctAnswerIndex": 0,
+          "answers": [
+            "The above statement is true.",
+            "The above statement is true except for pedestrians because they are not in a vehicle.",
+            "The statement is false.",
+            "The above statement is true except for farm machinery."
+          ]
+        },
+        {
+          "question": "Drivers must share the road with others, including passenger vehicles, commercial vehicles, pedestrians, motorcycles, farm machinery, cyclists and buses.",
+          "correctAnswerIndex": 0,
+          "answers": [
+            "The above statement is true.",
+            "The above statement is true except for pedestrians because they are not in a vehicle.",
+            "The statement is false.",
+            "The above statement is true except for farm machinery."
+          ]
+        },
+        {
+          "question": "Drivers must share the road with others, including passenger vehicles, commercial vehicles, pedestrians, motorcycles, farm machinery, cyclists and buses.",
+          "correctAnswerIndex": 0,
+          "answers": [
+            "The above statement is true.",
+            "The above statement is true except for pedestrians because they are not in a vehicle.",
+            "The statement is false.",
+            "The above statement is true except for farm machinery."
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Set 3",
+      "errorsAllowed": 2,
+      "questions": [
+        {
+          "question": "Drivers must share the road with others, including passenger vehicles, commercial vehicles, pedestrians, motorcycles, farm machinery, cyclists and buses.",
+          "correctAnswerIndex": 0,
+          "answers": [
+            "The above statement is true.",
+            "The above statement is true except for pedestrians because they are not in a vehicle.",
+            "The statement is false.",
+            "The above statement is true except for farm machinery."
+          ]
+        },
+        {
+          "question": "Drivers must share the road with others, including passenger vehicles, commercial vehicles, pedestrians, motorcycles, farm machinery, cyclists and buses.",
+          "correctAnswerIndex": 0,
+          "answers": [
+            "The above statement is true.",
+            "The above statement is true except for pedestrians because they are not in a vehicle.",
+            "The statement is false.",
+            "The above statement is true except for farm machinery."
+          ]
+        },
+        {
+          "question": "Drivers must share the road with others, including passenger vehicles, commercial vehicles, pedestrians, motorcycles, farm machinery, cyclists and buses.",
+          "correctAnswerIndex": 0,
+          "answers": [
+            "The above statement is true.",
+            "The above statement is true except for pedestrians because they are not in a vehicle.",
+            "The statement is false.",
+            "The above statement is true except for farm machinery."
+          ]
+        }
+      ]
+    }
+  ]
+}
