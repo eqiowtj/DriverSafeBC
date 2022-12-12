@@ -179,8 +179,9 @@ public class QuizActivity extends AppCompatActivity {
                 button.setChecked(isChecked);
             }
 
-            button.setLayoutParams(
-                    new RadioGroup.LayoutParams(RadioGroup.LayoutParams.WRAP_CONTENT, 150));
+            RadioGroup.LayoutParams layoutParams = new RadioGroup.LayoutParams(RadioGroup.LayoutParams.WRAP_CONTENT, RadioGroup.LayoutParams.WRAP_CONTENT);
+            layoutParams.setMargins(0, 16, 0, 16);
+            button.setLayoutParams(layoutParams);
             button.setTextSize(16);
             button.setEnabled(!hasAnswered);
             button.setText(quizQuestion.getAnswers().get(i));
