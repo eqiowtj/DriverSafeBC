@@ -37,10 +37,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void rankClicked(View view) {
-        Intent intent = new Intent(this, RankListActivity.class);
+    public void dsbcButtonClicked(View view) {
+        Intent intent = new Intent(this, DashboardActivity.class);
         startActivity(intent);
     }
-
 
 }
