@@ -40,4 +40,19 @@
     <string name="jianhao_zhou">Jianhao Zhou</string>
     <string name="mingfu_huang">Mingfu Huang</string>
     <string name="shang_xiao">Shang Xiao</string>
+    <string name="password">Password</string>
+    <string name="an_account_will_be_automatically_created_for_you_if_the_username_does_not_exist">An account will be automatically created for you if the username does not exist</string>
+    <string name="exclamation_mark">!</string>
+    <string name="user">User</string>
+    <string name="welcome">Welcome,</string>
+    <string name="your_overall_progress">Your Overall Progress:</string>
+    <string name="your_rank">Your Rank:</string>
+    <string name="start_practicing">Start Practicing</string>
+    <string name="prev">Prev</string>
+    <string name="next">Next</string>
+    <string name="your_score">Your Score:</string>
+    <string name="continue_string">Continue</string>
+    <string name="review">Review</string>
+    <string name="select_quiz_set">Select Quiz Set</string>
+    <string name="best">Best</string>
 </resources>

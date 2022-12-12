@@ -36,4 +36,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void dsbcButtonClicked(View view) {
+        Intent intent = new Intent(this, DashboardActivity.class);
+        startActivity(intent);
+    }
+
 }

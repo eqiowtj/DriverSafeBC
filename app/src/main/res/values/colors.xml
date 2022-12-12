@@ -9,5 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red_incorrect">#99FF0000</color>
     <color name="green_correct">#99009F08</color>
+    <color name="gray">#dbdbdb</color>
+    <color name="golden">#FFC000</color>
     <color name="sticker_selected">#E6F8F8</color>
 </resources>
