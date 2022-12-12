@@ -1,71 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:paddingHorizontal="20dp"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@drawable/icon" />
-
     <TextView
+        android:id="@+id/textViewTeamName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to BC!"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        android:layout_marginTop="10dp"
-        android:textStyle="bold" />
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/team_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/hollow_gray_20_bg"
-        android:hint="UserName"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="15dp"
-        android:textColorHint="@color/black" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/hollow_gray_20_bg"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="15dp"
-        android:textColorHint="@color/black" />
-
-    <TextView
+    <Button
+        android:id="@+id/buttonAtYourService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="An account will be automatically created for you if the username does not exist" />
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:onClick="atYourServiceButtonClicked"
+        android:text="@string/at_your_service"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTeamName" />
 
-    <TextView
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/buttonFirebase"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/login_bg"
-        android:gravity="center"
-        android:paddingVertical="10dp"
-        android:text="Login"
-        android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/firebase"
+        android:onClick="firebaseButtonClicked"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonAtYourService" />
 
-        <Button
+    <Button
         android:id="@+id/buttonDriverSafeBc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
+        android:onClick="dsbcButtonClicked"
         android:text="@string/driversafebc"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonFirebase" />
@@ -81,15 +60,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonDriverSafeBc" />
 
-
-    <Button
-        android:id="@+id/rank"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:text="VIEW RANK"
-        android:onClick="rankClicked"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/about" />
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
